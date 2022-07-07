@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Blog;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +17,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::truncate();
+        Blog::truncate();
+        Category::truncate();
+        $frontend = Category::factory()->create([
+            'name' => "Frontend",
+            'slug' => "fronted"
+        ]);
+        $backend = Category::factory()->create([
+            'name' => "Backend",
+            'slug' => "backend"
+        ]);
+        Blog::factory(2)->create([
+            'category_id' => $frontend->id
+        ]);
+        Blog::factory(2)->create([
+            'category_id' => $backend->id
+        ]);
     }
 }
