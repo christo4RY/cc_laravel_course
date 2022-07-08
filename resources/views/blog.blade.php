@@ -9,8 +9,8 @@
           />
           <h3 class="my-3">{{$blog->title}}</h3>
           <div class="my-2">
-            <div>Author - <a href="/users/{{$blog->author->username}}">{{$blog->author->name}}</a></div>
-            <div><a href="/categories/{{$blog->category->slug}}">
+            <div>Author - <a href="/?users={{$blog->author->username}}">{{$blog->author->name}}</a></div>
+            <div><a href="/?category={{$blog->category->slug}}">
                 <span class="badge bg-primary">{{$blog->category->name}}</span></a></div>
             <div>Published at - {{$blog->created_at->diffForHumans()}}</div>
           </div>

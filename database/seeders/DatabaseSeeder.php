@@ -28,11 +28,21 @@ class DatabaseSeeder extends Seeder
             'name' => "Backend",
             'slug' => "backend"
         ]);
-        Blog::factory(2)->create([
-            'category_id' => $frontend->id
+        $mgmg = User::factory()->create([
+            'name' => 'mgmg',
+            'username' => 'mgmg'
+        ]);
+        $kyawkyaw = User::factory()->create([
+            'name' => 'kyawkyaw',
+            'username' => 'kyawkyaw'
         ]);
         Blog::factory(2)->create([
-            'category_id' => $backend->id
+            'category_id' => $frontend->id,
+            'user_id' => $mgmg->id
+        ]);
+        Blog::factory(2)->create([
+            'category_id' => $backend->id,
+            'user_id' => $kyawkyaw->id
         ]);
     }
 }
