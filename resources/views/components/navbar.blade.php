@@ -7,6 +7,7 @@
                 <a href="/register" class="nav-link">Register</a>
                 <a href="/login" class="nav-link">Login</a>
             @else
+                <img src="{{auth()->user()->avator}}" width="50" height="50" class="rounded-circle" alt="">
                 <a href="" class="nav-link">
                     Welcome to {{ auth()->user()->name }}
                 </a>
