@@ -9,6 +9,16 @@
                     <div>Author - <a href="/?users={{ $blog->author->username }}">{{ $blog->author->name }}</a></div>
                     <div><a href="/?category={{ $blog->category->slug }}">
                             <span class="badge bg-primary">{{ $blog->category->name }}</span></a></div>
+                    <div class="my-2">
+                        <form action="/blog/{{ $blog->slug }}/subscribesHandler" method="POST">
+                            @csrf
+                            @if (auth()->user()->isSubscribed($blog))
+                                <button class="btn btn-danger" type="submit">UnSubscribe</button>
+                            @else
+                                <button class="btn btn-warning" type="submit">Subscribe</button>
+                            @endif
+                        </form>
+                    </div>
                     <div>Published at - {{ $blog->created_at->diffForHumans() }}</div>
                 </div>
                 <p class="lh-md">
@@ -34,12 +44,14 @@
             </div>
         </section>
     @else
-    <p class="text-center my-2">Please <a href="/login">Login</a> fill your account.</p>
+        <p class="text-center my-2">Please <a href="/login">Login</a> fill your account.</p>
     @endauth
 
     @if ($blog->comment->count())
-    <x-comment :comments="$blog->comment" />
+        <x-comment :comments="$blog
+            ->comment()
+            ->latest()
+            ->paginate(3)" />
     @endif
-    <x-subscribe-section />
     <x-blogs-you-may-like :blog="$blog" :randomBlogs="$randomBlogs" />
 </x-layout>

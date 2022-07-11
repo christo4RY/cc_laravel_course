@@ -13,3 +13,4 @@ Route::post('/register', [AuthController::class, 'store'])->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::get('/login', [AuthController::class, 'login'])->middleware('guest');
 Route::post('/login', [AuthController::class, 'store_login'])->middleware('guest');
+Route::post('/blog/{blog:slug}/subscribesHandler', [BlogController::class, 'subscribesHandler']);
