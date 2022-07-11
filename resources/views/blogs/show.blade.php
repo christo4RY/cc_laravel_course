@@ -12,11 +12,13 @@
                     <div class="my-2">
                         <form action="/blog/{{ $blog->slug }}/subscribesHandler" method="POST">
                             @csrf
-                            @if (auth()->user()->isSubscribed($blog))
-                                <button class="btn btn-danger" type="submit">UnSubscribe</button>
-                            @else
-                                <button class="btn btn-warning" type="submit">Subscribe</button>
-                            @endif
+                            @auth
+                                @if (auth()->user()->isSubscribed($blog))
+                                    <button class="btn btn-danger" type="submit">UnSubscribe</button>
+                                @else
+                                    <button class="btn btn-warning" type="submit">Subscribe</button>
+                                @endif
+                            @endauth
                         </form>
                     </div>
                     <div>Published at - {{ $blog->created_at->diffForHumans() }}</div>
