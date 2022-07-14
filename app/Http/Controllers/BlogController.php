@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rule;
 
 class BlogController extends Controller
 {
@@ -41,4 +40,6 @@ class BlogController extends Controller
 
         return back();
     }
+
+
 }

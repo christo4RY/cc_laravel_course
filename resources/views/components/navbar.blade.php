@@ -7,16 +7,22 @@
                 <a href="/register" class="nav-link">Register</a>
                 <a href="/login" class="nav-link">Login</a>
             @else
-                <img src="{{auth()->user()->avator}}" width="50" height="50" class="rounded-circle" alt="">
+                @can('admin')
+                    <a href="/admin/blogs/" class="nav-link">
+                        Daskboard
+                    </a>
+                @endcan
+                <img src="{{ auth()->user()->avator }}" width="50" height="50" class="rounded-circle"
+                    alt="">
                 <a href="" class="nav-link">
                     Welcome to {{ auth()->user()->name }}
                 </a>
             @endguest
             @auth
-            <form action="/logout" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-link nav-link">Logout</button>
-            </form>
+                <form action="/logout" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-link nav-link">Logout</button>
+                </form>
             @endauth
             <a href="#subscribe" class="nav-link">Subscribe</a>
         </div>

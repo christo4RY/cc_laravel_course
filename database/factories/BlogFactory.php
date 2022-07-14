@@ -24,6 +24,7 @@ class BlogFactory extends Factory
             'slug' => fake()->slug(),
             'intro' => fake()->sentence(),
             'body' => fake()->paragraph(),
+            'thumbnail' => fake()->image(),
             'user_id' => User::factory()
         ];
     }
